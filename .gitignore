@@ -49,3 +49,5 @@ app.*.map.json
 linux
 macos
 windows
+
+/android/key.properties

@@ -23,10 +23,10 @@ class _Eurekoin_HomeState extends State<Eurekoin_Home> {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/Aarohan_bg.png"),
-              colorFilter: new ColorFilter.mode(
-                  Color.fromARGB(176, 23, 10, 6), BlendMode.srcOver),
-              fit: BoxFit.fill),
+              image: AssetImage("assets/images/aarohan-bg-new.jpg"),
+              // colorFilter: new ColorFilter.mode(
+              //     Color.fromARGB(176, 23, 10, 6), BlendMode.srcOver),
+              fit: BoxFit.cover),
         ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
@@ -68,16 +68,17 @@ class _Eurekoin_HomeState extends State<Eurekoin_Home> {
                                 letterSpacing: 1),
                             controller: editingController,
                             decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.fromLTRB(4.w, 0.5.h, 3.w, 0.5.h),
-                                border: InputBorder.none,
-                                labelText: 'Referral Code',
-                                labelStyle: TextStyle(
-                                    color: Colors.white.withOpacity(0.5),
-                                    fontFamily: 'Poppins',
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w500)),
-                            //
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(4.w, 0.5.h, 3.w, 0.5.h),
+                              border: InputBorder.none,
+                              labelText: 'Referral Code',
+                              labelStyle: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontFamily: 'Poppins',
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ),
                         ),
                       ),

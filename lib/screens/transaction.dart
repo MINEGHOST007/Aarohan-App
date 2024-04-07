@@ -47,7 +47,8 @@ class _TransactionState extends State<Transaction> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/Aarohan_bg.png"), fit: BoxFit.fill),
+                  image: AssetImage("assets/images/aarohan-bg-new.jpg"),
+                  fit: BoxFit.fill),
             ),
             child: Scaffold(
               resizeToAvoidBottomInset: false,

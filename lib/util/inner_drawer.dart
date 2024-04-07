@@ -465,7 +465,7 @@ class InnerDrawerState extends State<InnerDrawer>
   }
 
   /// Trigger Area
-  Widget _trigger(AlignmentDirectional alignment, Widget child) {
+  Widget _trigger(AlignmentDirectional alignment, Widget? child) {
     assert(alignment != null);
     final bool drawerIsStart = _position == InnerDrawerDirection.start;
     final EdgeInsets padding = MediaQuery.of(context).padding;
@@ -583,7 +583,7 @@ class InnerDrawerState extends State<InnerDrawer>
       //     stops: [0.5],
       //   ),
       // ),
-      color: widget.backgroundColor ?? Theme.of(context).backgroundColor,
+      color: widget.backgroundColor ?? Theme.of(context).colorScheme.background,
       child: Stack(
         alignment: _drawerInnerAlignment!,
         children: <Widget>[
@@ -620,8 +620,8 @@ class InnerDrawerState extends State<InnerDrawer>
                   ),
 
                   ///Trigger
-                  _trigger(AlignmentDirectional.centerStart, widget.leftChild!),
-                  _trigger(AlignmentDirectional.centerEnd, widget.rightChild!),
+                  _trigger(AlignmentDirectional.centerStart, widget.leftChild),
+                  _trigger(AlignmentDirectional.centerEnd, widget.rightChild),
                 ].where((a) => a != null).toList(),
               ),
             ),

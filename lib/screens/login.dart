@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
                         height: 5.h,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(17.0),
+                        padding: const EdgeInsets.all(0.0),
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
                             CircleAvatar(
                               radius: 110,
                               backgroundImage: AssetImage(
-                                'assets/aarohan-logo.png',
+                                'assets/aarohan-logo-new.png',
                               ),
                             ),
                           ],

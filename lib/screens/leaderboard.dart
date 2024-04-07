@@ -2,6 +2,7 @@ import 'package:aarohan_app/widgets/bottomMenu.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -115,10 +116,10 @@ class _LeaderboardState extends State<Leaderboard> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/Aarohan_bg.png"),
-                  colorFilter: new ColorFilter.mode(
-                      Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
-                  fit: BoxFit.fill),
+                  image: AssetImage("assets/images/aarohan-bg-new.jpg"),
+                  // colorFilter: new ColorFilter.mode(
+                  //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
+                  fit: BoxFit.cover),
             ),
             child: Scaffold(
               resizeToAvoidBottomInset: false,
@@ -127,435 +128,501 @@ class _LeaderboardState extends State<Leaderboard> {
                 children: [
                   Column(
                     children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical: 3.h, horizontal: 2.5.w),
-                        alignment: Alignment.bottomCenter,
-                        height: 8.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: Colors.white,
+                      SizedBox(
+                        height: 3.h,
+                      ),
+                      OutlineGradientButton(
+                        padding: EdgeInsets.all(2),
+                        strokeWidth: 2,
+                        gradient: LinearGradient(colors: [
+                          Color.fromARGB(255, 251, 71, 10),
+                          Colors.transparent,
+                        ]),
+                        corners: Corners(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 5.w, vertical: 1.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Container(
-                                  child: CircleAvatar(
-                                    backgroundColor:
-                                        Color.fromRGBO(232, 94, 86, 1),
-                                    radius: 20,
-                                    // backgroundImage: AssetImage('assets/back.png'),
-                                    child: Icon(
-                                      Icons.arrow_back,
-                                      color: Colors.white,
+                        child: Container(
+                          // margin: EdgeInsets.symmetric(
+                          //     vertical: 3.h, horizontal: 2.5.w),
+                          alignment: Alignment.bottomCenter,
+                          height: 8.h,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(223, 47, 117, 138),
+                                  Color.fromARGB(255, 4, 29, 37),
+                                ],
+                              )),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 5.w, vertical: 1.h),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.transparent,
+                                      radius: 20,
+                                      // backgroundImage: AssetImage('assets/back.png'),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.arrow_back,
+                                          size: 30.sp,
+                                          color: Colors.blue[200],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 1.h),
-                                child: Text(
-                                  "Eurekoins",
-                                  style: TextStyle(
-                                      fontFamily: 'Mons',
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 1.h),
+                                  child: Text(
+                                    "Eurekoins",
+                                    style: TextStyle(
+                                      fontFamily: 'Bayon',
+                                      color: Colors.blue[200],
                                       fontSize: 4.h,
-                                      fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  await showDialog(
-                                      context: context,
-                                      builder: (context) => BackdropFilter(
-                                            filter: ImageFilter.blur(
-                                                sigmaX: 5, sigmaY: 5),
-                                            child: Dialog(
-                                              insetPadding: EdgeInsets.all(5.w),
-                                              shape: RoundedRectangleBorder(
+                                InkWell(
+                                  onTap: () async {
+                                    await showDialog(
+                                        context: context,
+                                        builder: (context) => BackdropFilter(
+                                              filter: ImageFilter.blur(
+                                                  sigmaX: 5, sigmaY: 5),
+                                              child: Dialog(
+                                                insetPadding:
+                                                    EdgeInsets.all(5.w),
+                                                shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.all(
-                                                          Radius.circular(
-                                                              15.0)),
+                                                    Radius.circular(15.0),
+                                                  ),
                                                   side: BorderSide(
-                                                      style: BorderStyle.solid,
-                                                      width: 1.sp,
-                                                      color: Colors.white)),
-                                              backgroundColor:
-                                                  fromCssColor('#D9D9D9'),
-                                              child: Container(
-                                                padding: EdgeInsets.symmetric(
+                                                    style: BorderStyle.solid,
+                                                    width: 1.sp,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                backgroundColor: Color.fromARGB(
+                                                    158, 73, 157, 182),
+                                                child: Container(
+                                                  padding: EdgeInsets.symmetric(
                                                     horizontal: 10.w,
-                                                    vertical: 2.h),
-                                                child: SingleChildScrollView(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Text(
-                                                        "Redeem Eurekoins",
-                                                        style: TextStyle(
-                                                            letterSpacing: 0.5,
-                                                            fontFamily: 'Staat',
-                                                            fontSize: 20.sp,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4.h,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child: Container(
-                                                              decoration: BoxDecoration(
-                                                                  color: fromCssColor(
-                                                                      "#CECECE"),
-                                                                  border: Border.all(
-                                                                      color: Colors
-                                                                          .black),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10.sp)),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(1
-                                                                            .sp),
-                                                                child:
-                                                                    TextField(
-                                                                  style: TextStyle(
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      fontSize:
-                                                                          14.sp,
-                                                                      letterSpacing:
-                                                                          1),
-                                                                  controller:
-                                                                      editingController,
-                                                                  decoration: InputDecoration(
-                                                                      contentPadding: EdgeInsets.fromLTRB(
-                                                                          4.w,
-                                                                          1.h,
-                                                                          3.w,
-                                                                          1.h),
-                                                                      border: InputBorder
-                                                                          .none,
-                                                                      hintText:
-                                                                          'Enter Redeem Code',
-                                                                      hintStyle: TextStyle(
-                                                                          fontFamily:
-                                                                              'Poppins',
-                                                                          fontSize: 13
-                                                                              .sp,
-                                                                          fontWeight:
-                                                                              FontWeight.w500)),
+                                                    vertical: 2.h,
+                                                  ),
+                                                  child: SingleChildScrollView(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Text(
+                                                          "Redeem Eurekoins",
+                                                          style: TextStyle(
+                                                              letterSpacing:
+                                                                  0.5,
+                                                              fontFamily:
+                                                                  'Staat',
+                                                              fontSize: 20.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 4.h,
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Container(
+                                                                decoration: BoxDecoration(
+                                                                    color: fromCssColor(
+                                                                        "#CECECE"),
+                                                                    border: Border.all(
+                                                                        color: Colors
+                                                                            .black),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            10.sp)),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(1
+                                                                              .sp),
+                                                                  child:
+                                                                      TextField(
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            'Poppins',
+                                                                        fontSize: 14
+                                                                            .sp,
+                                                                        letterSpacing:
+                                                                            1),
+                                                                    controller:
+                                                                        editingController,
+                                                                    decoration: InputDecoration(
+                                                                        contentPadding: EdgeInsets.fromLTRB(
+                                                                            4.w,
+                                                                            1.h,
+                                                                            3.w,
+                                                                            1
+                                                                                .h),
+                                                                        border: InputBorder
+                                                                            .none,
+                                                                        hintText:
+                                                                            'Enter Redeem Code',
+                                                                        hintStyle: TextStyle(
+                                                                            fontFamily:
+                                                                                'Poppins',
+                                                                            fontSize:
+                                                                                13.sp,
+                                                                            fontWeight: FontWeight.w500)),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 4.h,
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () async {
-                                                          int status = await Eurekoin
-                                                              .couponEurekoin(
-                                                                  editingController
-                                                                      .text);
-
-                                                          Eurekoin.getUserEurekoin()
-                                                              .then((value) {
-                                                            setState(() {
-                                                              _coins = value;
-                                                            });
-                                                          });
-                                                          if (status == 0) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Redemption Successful!")));
-                                                          } else if (status ==
-                                                              2) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Invalid Coupon!")));
-                                                          } else if (status ==
-                                                              3) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Coupon Already Redeemed!")));
-                                                          } else if (status ==
-                                                              4) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                                    SnackBar(
-                                                                        content:
-                                                                            Text("Coupon Expired!")));
-                                                          }
-
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        },
-                                                        child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      7.w,
-                                                                  vertical:
-                                                                      1.h),
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  Colors.white,
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  width: 1.sp),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5)),
-                                                          child: Text(
-                                                            "REDEEM",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                fontSize: 15.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 2.h,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceAround,
-                                                        children: [
-                                                          Image.asset(
-                                                            'assets/horline.png',
-                                                            width: 25.w,
-                                                          ),
-                                                          Text(
-                                                            "OR",
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'Staat',
-                                                                fontSize: 15.sp,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                          Image.asset(
-                                                            'assets/horline.png',
-                                                            width: 25.w,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 2.h,
-                                                      ),
-                                                      Text(
-                                                        "Scan a QR Code",
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 15.sp,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w500),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 2.h,
-                                                      ),
-                                                      InkWell(
+                                                        SizedBox(
+                                                          height: 4.h,
+                                                        ),
+                                                        InkWell(
                                                           onTap: () async {
-                                                            await scanQR(
-                                                                context);
+                                                            int status = await Eurekoin
+                                                                .couponEurekoin(
+                                                                    editingController
+                                                                        .text);
+
                                                             Eurekoin.getUserEurekoin()
                                                                 .then((value) {
                                                               setState(() {
                                                                 _coins = value;
                                                               });
                                                             });
-                                                            Navigator.pop(
-                                                                context);
+                                                            if (status == 0) {
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      SnackBar(
+                                                                          content:
+                                                                              Text("Redemption Successful!")));
+                                                            } else if (status ==
+                                                                2) {
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      SnackBar(
+                                                                          content:
+                                                                              Text("Invalid Coupon!")));
+                                                            } else if (status ==
+                                                                3) {
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      SnackBar(
+                                                                          content:
+                                                                              Text("Coupon Already Redeemed!")));
+                                                            } else if (status ==
+                                                                4) {
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      SnackBar(
+                                                                          content:
+                                                                              Text("Coupon Expired!")));
+                                                            }
+
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
                                                           },
-                                                          child: Image.asset(
-                                                              'assets/Scanner.png')),
-                                                      SizedBox(
-                                                        height: 1.h,
-                                                      ),
-                                                    ],
+                                                          child: Container(
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        7.w,
+                                                                    vertical:
+                                                                        1.h),
+                                                            decoration: BoxDecoration(
+                                                                color: Colors
+                                                                    .white,
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    width:
+                                                                        1.sp),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5)),
+                                                            child: Text(
+                                                              "REDEEM",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize:
+                                                                      15.sp,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 2.h,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceAround,
+                                                          children: [
+                                                            Image.asset(
+                                                              'assets/horline.png',
+                                                              width: 25.w,
+                                                            ),
+                                                            Text(
+                                                              "OR",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Staat',
+                                                                  fontSize:
+                                                                      15.sp,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                            Image.asset(
+                                                              'assets/horline.png',
+                                                              width: 25.w,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          height: 2.h,
+                                                        ),
+                                                        Text(
+                                                          "Scan a QR Code",
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 15.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 2.h,
+                                                        ),
+                                                        InkWell(
+                                                            onTap: () async {
+                                                              await scanQR(
+                                                                  context);
+                                                              Eurekoin.getUserEurekoin()
+                                                                  .then(
+                                                                      (value) {
+                                                                setState(() {
+                                                                  _coins =
+                                                                      value;
+                                                                });
+                                                              });
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: Image.asset(
+                                                                'assets/Scanner.png')),
+                                                        SizedBox(
+                                                          height: 1.h,
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ));
-                                },
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                          color: Colors.grey.shade400)),
-                                  child: Center(
-                                      child: Icon(
-                                    Icons.card_giftcard,
-                                    color: Colors.black,
-                                    size: 25.sp,
-                                  )),
+                                            ));
+                                  },
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    child: Center(
+                                        child: Icon(
+                                      Icons.card_giftcard,
+                                      color: Colors.blue[200],
+                                      size: 25.sp,
+                                    )),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       SizedBox(
                         height: 3.h,
                       ),
-                      ClipRect(
-                        child: Container(
-                          width: 85.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.sp),
-                              color: Colors.white),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(5.w, 1.7.h, 0, 0),
-                                child: Text(
-                                  "${users.name}",
-                                  style: TextStyle(
-                                      letterSpacing: 1.1,
+                      OutlineGradientButton(
+                        gradient: LinearGradient(colors: [
+                          Colors.transparent,
+                          Color.fromARGB(255, 251, 71, 10),
+                        ]),
+                        padding: EdgeInsets.all(2),
+                        corners: Corners(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15),
+                          topLeft: Radius.circular(15),
+                          topRight: Radius.circular(15),
+                        ),
+                        strokeWidth: 2,
+                        child: ClipRect(
+                          child: Container(
+                            width: 85.w,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                // color: Colors.red),
+                                color: Color.fromARGB(209, 73, 157, 182)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(5.w, 1.7.h, 0, 0),
+                                  child: Text(
+                                    "${users.name}",
+                                    style: TextStyle(
+                                      // letterSpacing: 1,
                                       fontFamily: 'Staat',
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(5.w, 0.7.h, 5.w, 0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Balance",
-                                      style: TextStyle(
-                                          letterSpacing: 1.1,
-                                          fontFamily: 'Poppins',
-                                          fontSize: 13.sp,
-                                          fontWeight: FontWeight.w700),
+                                      fontSize: 23.sp,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                    // SizedBox(width: 3.w,),
-                                    InkWell(
-                                      onTap: () async {
-                                        await Share.share(
-                                            'Use my referal code $_referralCode to get 25 Eurekoins when you register. \nLink: https://play.google.com/store/apps/details?id=com.app.aarohan.aarohanapp');
-                                      },
-                                      child: Row(
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(5.w, 0.7.h, 5.w, 0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Balance",
+                                        style: TextStyle(
+                                            letterSpacing: 1.1,
+                                            fontFamily: 'Poppins',
+                                            fontSize: 13.sp,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      // SizedBox(width: 3.w,),
+                                      InkWell(
+                                        onTap: () async {
+                                          await Share.share(
+                                              'Use my referal code $_referralCode to get 25 Eurekoins when you register. \nLink: https://play.google.com/store/apps/details?id=com.app.aarohan.aarohanapp');
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 1.h,
+                                                  horizontal: 2.w),
+                                              decoration: BoxDecoration(
+                                                // color: Colors.red.shade100,
+                                                border: Border.all(
+                                                  width: 1,
+                                                  color: Colors.black,
+                                                ),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.share,
+                                                  size: 20,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 1.w,
+                                            ),
+                                            Text(
+                                              (_referralCode != null)
+                                                  ? "$_referralCode"
+                                                  : "",
+                                              style: TextStyle(
+                                                  letterSpacing: 1.1,
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 13.sp,
+                                                  fontWeight: FontWeight.w500),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(4.w, 1.h, 0, 0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Row(
                                         children: [
                                           Container(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 1.h, horizontal: 2.w),
-                                            decoration: BoxDecoration(
-                                                color: Colors.red.shade100,
-                                                shape: BoxShape.circle),
-                                            child: Icon(
-                                              Icons.share,
-                                              size: 20,
-                                              color: Color.fromRGBO(
-                                                  232, 94, 86, 1),
+                                            child: Image.asset(
+                                              'assets/eurekoin_logo.jpg',
+                                              color: Colors.white,
                                             ),
+                                            height: 3.h,
                                           ),
                                           SizedBox(
-                                            width: 1.w,
+                                            width: 2.w,
                                           ),
                                           Text(
-                                            (_referralCode != null)
-                                                ? "$_referralCode"
-                                                : "",
+                                            (_coins != null) ? "$_coins" : "0",
                                             style: TextStyle(
                                                 letterSpacing: 1.1,
                                                 fontFamily: 'Poppins',
-                                                fontSize: 13.sp,
+                                                fontSize: 15.sp,
                                                 fontWeight: FontWeight.w500),
-                                          )
+                                          ),
                                         ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(4.w, 1.h, 0, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          child: Image.asset(
-                                            'assets/Eurekoin_orange.jpg',
-                                          ),
-                                          height: height * 0.07,
-                                          width: width * 0.09,
-                                        ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        Text(
-                                          (_coins != null) ? "$_coins" : "0",
-                                          style: TextStyle(
-                                              letterSpacing: 1.1,
-                                              fontFamily: 'Poppins',
-                                              fontSize: 15.sp,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ],
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, '/transaction');
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(left: 3.w),
-                                        child:
-                                            Image.asset('assets/Pay icon.png'),
-                                        height: height * 0.05,
-                                        width: width * 0.06,
+                                      Expanded(
+                                        child: SizedBox(),
                                       ),
-                                    ),
-                                  ],
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 5.w),
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.popAndPushNamed(
+                                                context, '/transaction');
+                                          },
+                                          child: Container(
+                                            // margin: EdgeInsets.only(left: 3.w),
+                                            child: Image.asset(
+                                                'assets/Pay icon.png'),
+                                            height: height * 0.05,
+                                            width: width * 0.06,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -595,84 +662,108 @@ class _LeaderboardState extends State<Leaderboard> {
                                       child: BackdropFilter(
                                         filter: ImageFilter.blur(
                                             sigmaX: 1.5, sigmaY: 1.5),
-                                        child: Container(
-                                          padding: EdgeInsets.fromLTRB(
-                                              5.w, 1.h, 2.w, 1.h),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(15.sp),
-                                            color: Colors.white,
+                                        child: OutlineGradientButton(
+                                          gradient: LinearGradient(colors: [
+                                            Colors.transparent,
+                                            Color.fromARGB(255, 251, 71, 10),
+                                          ]),
+                                          padding: EdgeInsets.all(2),
+                                          corners: Corners(
+                                            topLeft: Radius.circular(15),
+                                            topRight: Radius.circular(15),
+                                            bottomLeft: Radius.circular(15),
+                                            bottomRight: Radius.circular(15),
                                           ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    "${index + 1}.",
-                                                    style: TextStyle(
+                                          strokeWidth: 2,
+                                          child: Container(
+                                            padding: EdgeInsets.fromLTRB(
+                                                5.w, 1.h, 2.w, 1.h),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              color: Color.fromARGB(
+                                                  204, 73, 157, 182),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "${index + 1}.",
+                                                      style: TextStyle(
                                                         fontFamily: 'Poppins',
                                                         fontSize: 13.sp,
                                                         fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 2.w,
-                                                  ),
-                                                  CircleAvatar(
-                                                    backgroundImage:
-                                                        NetworkImage(
-                                                      '${snapshot.data[index]['imageURL']}',
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
-                                                    radius: 15.sp,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 2.w,
-                                                  ),
-                                                  Container(
-                                                    width: 45.w,
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "${snapshot.data[index]['username']}",
-                                                          style: TextStyle(
+                                                    SizedBox(
+                                                      width: 2.w,
+                                                    ),
+                                                    CircleAvatar(
+                                                      backgroundImage:
+                                                          NetworkImage(
+                                                        '${snapshot.data[index]['imageURL']}',
+                                                      ),
+                                                      radius: 15.sp,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 2.w,
+                                                    ),
+                                                    Container(
+                                                      width: 45.w,
+                                                      // color: Colors.red,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "${snapshot.data[index]['username']}",
+                                                            style: TextStyle(
                                                               fontFamily:
                                                                   'Poppins',
                                                               fontSize: 12.sp,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w500),
-                                                        ),
-                                                      ],
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Container(
-                                                child: Row(
-                                                  children: [
-                                                    Image.asset(
-                                                        'assets/Eurekoin_orange.jpg',
-                                                        height: height * 0.04,
-                                                        width: width * 0.09),
-                                                    SizedBox(width: 1.w),
-                                                    Text(
-                                                      "${snapshot.data[index]['coins']}",
-                                                      style: TextStyle(
+                                                  ],
+                                                ),
+                                                Container(
+                                                  child: Row(
+                                                    children: [
+                                                      Image.asset(
+                                                        'assets/eurekoin_logo.jpg',
+                                                        color: Colors.white,
+                                                        height: 4.h,
+                                                      ),
+                                                      SizedBox(width: 2.w),
+                                                      Text(
+                                                        "${snapshot.data[index]['coins']}",
+                                                        style: TextStyle(
                                                           letterSpacing: 0.5,
                                                           fontFamily: 'Poppins',
                                                           fontSize: 13.sp,
                                                           fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                  ],
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 1.w,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

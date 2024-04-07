@@ -53,12 +53,13 @@ class _MenuItemsState extends State<MenuItems> {
               Navigator.pushNamed(context, widget.routeName!);
             } else if (widget.routeName == '/eurekoin') {
               Eurekoin.isEurekoinUserRegistered().then((value) {
-                if (value == "0") {
+                if (value == "1") {
                   Navigator.pushNamed(context, '/leaderboard');
                 } else {
                   Navigator.pushNamed(context, widget.routeName!);
                 }
               });
+              // Navigator.pushNamed(context, widget.routeName!);
             } else {
               Navigator.pushNamed(context, widget.routeName!);
             }
@@ -77,7 +78,6 @@ class _MenuItemsState extends State<MenuItems> {
                   : Container(
                       margin: EdgeInsets.symmetric(vertical: 4.sp),
                       child: Icon(
-                        
                         widget.leadingImage,
                         size: 30.sp,
                         color: Colors.white,

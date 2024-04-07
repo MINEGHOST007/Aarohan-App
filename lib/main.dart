@@ -1,5 +1,5 @@
 import 'package:aarohan_app/firebase_options.dart';
-import 'package:aarohan_app/game/gamemain.dart';
+// import '../game/gamemain.dart';
 import 'package:aarohan_app/interficio/interficio.dart';
 import 'package:aarohan_app/models/event.dart';
 import 'package:aarohan_app/resources/firestore_provider.dart';
@@ -53,7 +53,7 @@ Future main() async {
   await Flame.device.fullScreen();
 
   // // Initialize hive.
-  await initHive();
+  // await initHive();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -138,7 +138,7 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/eventpage': (context) => Event_Detail(),
           '/login': (context) => Login(),
-          '/game': (context) => gamerunner(),
+          // '/game': (context) => gamerunner(),
           '/timeline': (context) => Timeline(),
           '/home': (context) => Dashboard(),
           '/leaderboard': (context) => Leaderboard(),

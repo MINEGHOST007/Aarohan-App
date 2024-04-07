@@ -2,16 +2,20 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart' as http;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'package:outline_gradient_button/outline_gradient_button.dart';
 // import 'package:location/location.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:aarohan_app/util/inner_drawer.dart';
+import 'package:sizer/sizer.dart';
+
 import 'fullscreen_image.dart';
 
 ValueNotifier<bool> updateMap = ValueNotifier(false);
@@ -24,11 +28,11 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState(user);
 }
 
-String apiUrl = "jdapi.nitdgplug.org";
+String apiUrl = "interfecio.nitdgplug.org";
 
 bool header = false;
 bool intro = false;
-ValueNotifier<double>? lat, long;
+ValueNotifier<double> lat = ValueNotifier(0.0), long = ValueNotifier(0.0);
 List<Marker> _markers = [];
 int x = 0;
 double mapZoom = 15.0;
@@ -54,17 +58,17 @@ class _HomePageState extends State<HomePage>
   var mainQues;
   var finalAns;
 
-  late List<dynamic> leaderboard; //stores the current leaderboard
+  List<dynamic> leaderboard = []; //stores the current leaderboard
 
   final _answerFieldController =
       TextEditingController(); //to retrieve textfield value
 
   final _fieldFocusNode = new FocusNode(); //to deselect answer textfield
 
-  bool _isLoading = false;
+  bool _isLoading = true;
 
   String getSpaces(int index) {
-    int noOfSpaces = 2 - (((index / 10).toInt() > 0) ? 2 : 0);
+    int noOfSpaces = 2 - ((index ~/ 10 > 0) ? 2 : 0);
     String spaces = "";
     for (int i = 0; i < noOfSpaces; i++) {
       spaces += " ";
@@ -130,11 +134,13 @@ class _HomePageState extends State<HomePage>
       _isLoading = true;
     });
     print("start");
+    print("byee");
     http.Response response = await http
         .get(Uri.parse("https://$apiUrl/api/getclues/"), headers: {
       "Authorization": "Token ${user["token"]}",
       "Content-type": "application/json"
     });
+    print(response);
     print("done");
 
     setState(() {
@@ -170,9 +176,11 @@ class _HomePageState extends State<HomePage>
       "Authorization": "Token ${user["token"]}",
       "Content-type": "application/json"
     });
-    var clocations = json.decode(response.body);
+    print("CLLOC----------${response.body}");
+    var clocations = {"data": []};
+    if (response.statusCode == 200) clocations = json.decode(response.body);
     print("DATA Correct Locations : $clocations");
-    if (clocations['data'].length == 0) {
+    if (clocations['data']!.length == 0) {
       print("NO CORRECT LOCATIONS");
       setState(() {
         correctLocations = [];
@@ -182,7 +190,7 @@ class _HomePageState extends State<HomePage>
     }
     setState(() {
       correctLocations = List<LatLng>.from(
-        clocations['data'].map(
+        clocations['data']!.map(
           (json) =>
               LatLng(double.parse(json['lat']), double.parse(json['long'])),
         ),
@@ -224,6 +232,7 @@ class _HomePageState extends State<HomePage>
 
 //this function retrieves the current leaderboard
   Future getScoreboard() async {
+    print("___________________GETTING_LEADERBOARD_________________________");
     setState(() {
       _isLoading = true;
     });
@@ -234,6 +243,7 @@ class _HomePageState extends State<HomePage>
     print("DATA LEADERBOARD $leaderboard");
     setState(() {
       _isLoading = false;
+      leaderboard = leaderboard;
     });
   }
 
@@ -325,8 +335,8 @@ class _HomePageState extends State<HomePage>
         "Content-Type": "application/json"
       },
       body: json.encode({
-        "lat": lat!.value,
-        "long": long!.value,
+        "lat": lat.value,
+        "long": long.value,
         "level_no": levelData["level_no"],
       }),
     );
@@ -421,7 +431,8 @@ class _HomePageState extends State<HomePage>
     SharedPreferences.getInstance().then((value) {
       setState(() {
         _sharedPrefs = value;
-        _finalAnswerGiven = _sharedPrefs.get("finalAnswerGiven") as bool;
+        _finalAnswerGiven =
+            (_sharedPrefs.get("finalAnswerGiven") ?? false) as bool;
         print("DATA FINAL ANSWER GIVEN : $_finalAnswerGiven");
       });
     });
@@ -434,14 +445,15 @@ class _HomePageState extends State<HomePage>
     // getMainQuestion();
     lat = ValueNotifier<double>(0.0);
     long = ValueNotifier<double>(0.0);
-    lat!.addListener(() {
+    lat.addListener(() {
       setState(() {});
     });
-    long!.addListener(() {
+    long.addListener(() {
       setState(() {});
     });
     getLevelData().then((val) {
       getScoreboard().then((onValue) {
+        print(onValue);
         getUnclockedClues().then((onValue) {
           getMainQuestion().then((onValue) {
             getCorrectLocations();
@@ -449,6 +461,8 @@ class _HomePageState extends State<HomePage>
         });
       });
     });
+    print("PRINTING CLUE DATA ________________________________$clueData");
+    print(clueData);
     // getMainQuestion();
   }
 
@@ -479,6 +493,9 @@ class _HomePageState extends State<HomePage>
             color: Colors.white.withOpacity(0),
             child: Column(
               children: <Widget>[
+                SizedBox(
+                  height: 5.h,
+                ),
                 Container(
                   color: Colors.black,
                   alignment: Alignment.topLeft,
@@ -572,8 +589,12 @@ class _HomePageState extends State<HomePage>
                                                             child: Container(
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: const Color(
-                                                                    0xFF6f2603),
+                                                                color: const Color
+                                                                    .fromARGB(
+                                                                    255,
+                                                                    4,
+                                                                    133,
+                                                                    156),
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
@@ -1006,7 +1027,7 @@ class _HomePageState extends State<HomePage>
                               "The Mystery",
                               style: TextStyle(
                                   fontFamily: 'Gotham',
-                                  color: Color(0xFFFF9e02),
+                                  color: Color.fromARGB(255, 255, 2, 2),
                                   fontSize: 35),
                             ),
                           ),
@@ -1045,7 +1066,7 @@ class _HomePageState extends State<HomePage>
                           // ),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFFFF9e02),
+                                backgroundColor: Color.fromARGB(255, 255, 2, 2),
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 10.0),
                               ),
@@ -1134,7 +1155,7 @@ class _HomePageState extends State<HomePage>
                     children: <Widget>[
                       GameMap(
                         isUp: _isUp,
-                        correctLocations: correctLocations,
+                        correctLocations: [],
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15),
@@ -1168,7 +1189,8 @@ class _HomePageState extends State<HomePage>
                             child: Container(
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
-                                color: Color(0xFF410000).withOpacity(0.99),
+                                color: Color.fromARGB(255, 0, 47, 65)
+                                    .withOpacity(0.99),
                                 // boxShadow: [
                                 //   BoxShadow(
                                 //       color: Colors.black.withOpacity(0.5),
@@ -1228,10 +1250,10 @@ class _HomePageState extends State<HomePage>
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    _isLoading
+                                    _isLoading || mainQues == null
                                         ? Container()
                                         : Text(
-                                            mainQues["data"],
+                                            mainQues["data"].toString(),
                                             style: TextStyle(fontSize: 19),
                                           ),
                                   ],
@@ -1260,95 +1282,112 @@ class _HomePageState extends State<HomePage>
                                   _isOpen = !_isOpen;
                                 });
                               },
-                              child: Container(
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withOpacity(0.5),
-                                        offset: Offset.zero,
-                                        blurRadius: 10,
-                                        spreadRadius: 5),
-                                  ],
-                                  color: const Color(0xFF420000),
-                                  borderRadius: BorderRadius.circular(17),
+                              child: OutlineGradientButton(
+                                gradient: LinearGradient(colors: [
+                                  Colors.orange,
+                                  Colors.transparent,
+                                ]),
+                                padding: EdgeInsets.all(1.5),
+                                corners: Corners(
+                                  bottomLeft: Radius.circular(17),
+                                  bottomRight: Radius.circular(17),
+                                  topLeft: Radius.circular(17),
+                                  topRight: Radius.circular(17),
                                 ),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Positioned(
-                                      top: 0.0,
-                                      left: 0.0,
-                                      right: 0.0,
-                                      child: _isLoading
-                                          ? Container(
-                                              padding: const EdgeInsets.only(
-                                                  right: 20),
-                                              child: const Center(
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                color: Color(0xFFFF9e02),
-                                              )))
-                                          : levelData["level"] == "ALLDONE"
-                                              ? const Center(
-                                                  child: Text(
-                                                    "Solve the mystery",
-                                                    style: TextStyle(
-                                                      fontFamily: 'Mysterious',
-                                                      // fontWeight:
-                                                      //     FontWeight.bold,
-                                                      fontSize: 25.0,
+                                strokeWidth: 3,
+                                child: Container(
+                                  padding: const EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black.withOpacity(0.5),
+                                          offset: Offset.zero,
+                                          blurRadius: 10,
+                                          spreadRadius: 5),
+                                    ],
+                                    color: Color.fromRGBO(51, 130, 154, 0.75),
+                                    borderRadius: BorderRadius.circular(17),
+                                  ),
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Positioned(
+                                        top: 0.0,
+                                        left: 0.0,
+                                        right: 0.0,
+                                        child: _isLoading
+                                            ? Container(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: const Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                  color: Color(0xFFFF9e02),
+                                                )))
+                                            : levelData["level"] == "ALLDONE"
+                                                ? const Center(
+                                                    child: Text(
+                                                      "Solve the mystery",
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            'Mysterious',
+                                                        // fontWeight:
+                                                        //     FontWeight.bold,
+                                                        fontSize: 25.0,
+                                                      ),
                                                     ),
-                                                  ),
-                                                )
-                                              : levelData["level"] ==
-                                                      "More Levels Coming Soon"
-                                                  ? const Center(
-                                                      child: Text(
-                                                          "More Levels Coming Soon"))
-                                                  : Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceEvenly,
-                                                      children: <Widget>[
-                                                        SingleChildScrollView(
-                                                          child: Text(
-                                                            "${levelData["title"]}  🚩",
+                                                  )
+                                                : levelData["level"] ==
+                                                        "More Levels Coming Soon"
+                                                    ? const Center(
+                                                        child: Text(
+                                                            "More Levels Coming Soon"))
+                                                    : Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: <Widget>[
+                                                          SingleChildScrollView(
+                                                            child: Text(
+                                                              "${levelData["title"]}  🚩",
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Gotham',
+                                                                color: _isOpen
+                                                                    ? const Color(
+                                                                        0xFFFF9e02)
+                                                                    : Colors
+                                                                        .white,
+                                                                fontSize: 30.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            height: 15,
+                                                          ),
+                                                          Text(
+                                                            "Level: ${levelData["level_no"]}",
                                                             style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 17,
                                                               fontFamily:
-                                                                  'Gotham',
-                                                              color: _isOpen
-                                                                  ? const Color(
-                                                                      0xFFFF9e02)
-                                                                  : Colors
-                                                                      .white,
-                                                              fontSize: 30.0,
+                                                                  "LemonMilk",
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
                                                             ),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          height: 15,
-                                                        ),
-                                                        Text(
-                                                          "Level: ${levelData["level_no"]}",
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 17,
-                                                            fontFamily:
-                                                                "LemonMilk",
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      ],
-                                                    ),
-                                    ),
-                                  ],
+                                                          )
+                                                        ],
+                                                      ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -1397,7 +1436,7 @@ class _HomePageState extends State<HomePage>
                                                         vertical: 10,
                                                         horizontal: 10),
                                                 child: Text(
-                                                  mainQues["data"],
+                                                  mainQues["data"].toString(),
                                                   style: const TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 17,
@@ -1731,7 +1770,8 @@ class _HomePageState extends State<HomePage>
                                       blurRadius: 10,
                                       spreadRadius: 5),
                                 ],
-                                color: const Color(0xFF420000).withOpacity(0.7),
+                                color: Color.fromARGB(255, 4, 133, 156)
+                                    .withOpacity(0.7),
                                 // gradient: LinearGradient(
                                 //   begin: Alignment.topCenter,
                                 //   end: Alignment.bottomCenter,

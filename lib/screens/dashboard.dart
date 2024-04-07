@@ -56,7 +56,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
         results = eventItems!
             .where((element) => (element.tag!.contains(tags[index])))
             .toList();
-        
       } else {
         results = M;
 
@@ -336,7 +335,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 CircleAvatar(
                                   radius: 23,
                                   backgroundImage:
-                                      AssetImage('assets/aarohan-logo.png'),
+                                      AssetImage('assets/aarohan-logo-new.png'),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 1.25.h),
@@ -524,7 +523,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 },
                                 child: Container(
                                   height: 8.h,
-                                  width: 25.w,
+                                  width: 28.w,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -979,13 +978,13 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   Text("8",
                                       style: TextStyle(
                                           fontFamily: 'Mons',
-                                          fontSize: 2.5.h,
+                                          fontSize: 15.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500)),
                                   Text("Mon",
                                       style: TextStyle(
                                           fontFamily: 'Mons',
-                                          fontSize: 2.h,
+                                          fontSize: 12.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500)),
                                 ],
@@ -1035,13 +1034,13 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   Text("9",
                                       style: TextStyle(
                                           fontFamily: 'Mons',
-                                          fontSize: 2.5.h,
+                                          fontSize: 15.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500)),
                                   Text("Tue",
                                       style: TextStyle(
                                           fontFamily: 'Mons',
-                                          fontSize: 2.h,
+                                          fontSize: 12.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500)),
                                 ],
@@ -1091,15 +1090,17 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   Text("10",
                                       style: TextStyle(
                                           fontFamily: 'Mons',
-                                          fontSize: 2.5.h,
+                                          fontSize: 15.sp,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w500)),
-                                  Text("Wed",
-                                      style: TextStyle(
-                                          fontFamily: 'Mons',
-                                          fontSize: 2.h,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
+                                  Text(
+                                    "Wed",
+                                    style: TextStyle(
+                                        fontFamily: 'Mons',
+                                        fontSize: 12.sp,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 ],
                               ),
                             ),

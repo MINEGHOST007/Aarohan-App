@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Sort_Events {
   dynamic func(dynamic dayItem) {
     List<dynamic> M = dayItem;
@@ -43,8 +41,10 @@ class Sort_Events {
     for (var i in M) {
       if (N[i['time']] == null) {
         N[i['time']] = [i['name']];
+        
       } else
         N[i['time']]?.add(i['name']);
+        
     }
     return N;
   }

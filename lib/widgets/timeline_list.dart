@@ -13,6 +13,7 @@ class Timeline_List extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    print(data);
     return ClipRect(
       child: Container(
         // margin: EdgeInsets.symmetric(horizontal: 1..w),
@@ -100,19 +101,19 @@ class Timeline_List extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(3.w, 0.4.h, 0, 0),
-                                child: Text(
-                                  "Online",
-                                  style: TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 11.sp,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
+                              // Padding(
+                              //   padding: EdgeInsets.fromLTRB(3.w, 0.4.h, 0, 0),
+                              //   child: Text(
+                              //     "Online",
+                              //     style: TextStyle(
+                              //       fontFamily: 'Poppins',
+                              //       fontSize: 11.sp,
+                              //       fontWeight: FontWeight.w500,
+                              //       color: Colors.white,
+                              //     ),
+                              //   ),
+                              // ),
+                            ],  
                           ),
                         ),
                       ),

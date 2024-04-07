@@ -1,154 +1,43 @@
 [
     {
-        "featureType": "all",
-        "elementType": "geometry",
+        "featureType": "administrative",
+        "elementType": "all",
         "stylers": [
-            {
-                "color": "#f2c578"
-            },
-            {
-                "saturation": "40"
-            },
-            {
-                "gamma": "1.5"
-            },
-            {
-                "weight": "1"
-            },
-            {
-                "lightness": "10"
-            }
-        ]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "saturation": "-100"
-            },
-            {
-                "lightness": "-73"
-            },
-            {
-                "gamma": "0.00"
-            },
-            {
-                "weight": "10.00"
-            },
             {
                 "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
         "stylers": [
-            {
-                "gamma": 0.01
-            },
-            {
-                "lightness": "100"
-            },
-            {
-                "color": "#000000"
-            },
             {
                 "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
         "stylers": [
             {
-                "saturation": -31
-            },
-            {
-                "lightness": -33
-            },
-            {
-                "weight": 2
-            },
-            {
-                "gamma": 0.8
-            },
-            {
-                "visibility": "off"
+                "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "all",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.country",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.province",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.locality",
+        "featureType": "administrative",
         "elementType": "labels.text",
         "stylers": [
             {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "administrative.neighborhood",
-        "elementType": "labels.text",
-        "stylers": [
-            {
-                "visibility": "off"
+                "visibility": "on"
             }
         ]
     },
     {
         "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "lightness": 30
-            },
-            {
-                "saturation": 30
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "saturation": 20
-            }
-        ]
-    },
-    {
-        "featureType": "poi.attraction",
-        "elementType": "labels.text",
+        "elementType": "all",
         "stylers": [
             {
                 "visibility": "on"
@@ -156,38 +45,29 @@
         ]
     },
     {
-        "featureType": "poi.park",
-        "elementType": "geometry",
+        "featureType": "poi",
+        "elementType": "all",
         "stylers": [
             {
-                "lightness": 20
-            },
-            {
-                "saturation": -20
+                "visibility": "on"
             }
         ]
     },
     {
         "featureType": "road",
-        "elementType": "geometry",
+        "elementType": "all",
         "stylers": [
             {
-                "lightness": 10
-            },
-            {
-                "saturation": -30
+                "visibility": "on"
             }
         ]
     },
     {
-        "featureType": "road",
-        "elementType": "geometry.stroke",
+        "featureType": "transit",
+        "elementType": "all",
         "stylers": [
             {
-                "saturation": 25
-            },
-            {
-                "lightness": 25
+                "visibility": "on"
             }
         ]
     },
@@ -196,7 +76,7 @@
         "elementType": "all",
         "stylers": [
             {
-                "lightness": -20
+                "visibility": "on"
             }
         ]
     }

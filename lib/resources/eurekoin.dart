@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Eurekoin {
   static User currentUser = FirebaseAuth.instance.currentUser!;
-  static final String baseUrl = "https://eurekoinapi.nitdgplug.org";
+  static final String baseUrl = "https://eurekoin.nitdgplug.org";
   static int? userEurekoin;
   static String? userReferralCode;
   static var transHistory;
@@ -21,7 +21,7 @@ class Eurekoin {
   // }
 
   static Future fetchLeaderboard() async {
-    String url = "https://eurekoinapi.nitdgplug.org/api/leaderboard/";
+    String url = "https://eurekoin.nitdgplug.org/api/leaderboard/";
     http.Response response = await http.get(Uri.parse(url));
     List<dynamic> dataList = json.decode(response.body);
 
@@ -33,9 +33,10 @@ class Eurekoin {
     await dotenv.load(fileName: ".env");
     var bytes = utf8.encode(
         "${currentUser.providerData[0].email}" + "${dotenv.env['LOGIN_KEY']}");
+
     var encoded = sha1.convert(bytes);
     String apiUrl =
-        "https://eurekoinapi.nitdgplug.org/api/transfer/?token=$encoded&amount=$amount&email=$transferTo";
+        "https://eurekoin.nitdgplug.org/api/transfer/?token=$encoded&amount=$amount&email=$transferTo";
     print(apiUrl);
     http.Response response = await http.get(Uri.parse(apiUrl));
     print(response.body);
@@ -48,9 +49,10 @@ class Eurekoin {
 
     var email = FirebaseAuth.instance.currentUser!.providerData[0].email;
     var bytes = utf8.encode("$email" + "${dotenv.env['LOGIN_KEY']}");
+
     var encoded = sha1.convert(bytes);
     String apiUrl =
-        "https://eurekoinapi.nitdgplug.org/api/invite_code/?token=$encoded";
+        "https://eurekoin.nitdgplug.org/api/invite_code/?token=$encoded";
     http.Response response = await http.get(Uri.parse(apiUrl));
     print(response.body);
     var referralCode = json.decode(response.body)['invite_code'];
@@ -59,8 +61,7 @@ class Eurekoin {
   }
 
   static Future getAllUsers(String email) async {
-    String apiUrl =
-        "https://eurekoinapi.nitdgplug.org/api/users/?pattern=$email";
+    String apiUrl = "https://eurekoin.nitdgplug.org/api/users/?pattern=$email";
     http.Response response = await http.get(Uri.parse(apiUrl));
     print(response.body);
     return json.decode(response.body)['users'];
@@ -70,10 +71,11 @@ class Eurekoin {
     await dotenv.load(fileName: ".env");
     var email = FirebaseAuth.instance.currentUser!.providerData[0].email;
     var bytes = utf8.encode("$email" + "${dotenv.env['LOGIN_KEY']}");
+
     var encoded = sha1.convert(bytes);
-    print(encoded);
-    String apiUrl =
-        "https://eurekoinapi.nitdgplug.org/api/coins/?token=$encoded";
+    // print(encoded);
+
+    String apiUrl = "https://eurekoin.nitdgplug.org/api/coins/?token=$encoded";
     print(apiUrl);
     http.Response response = await http.get(Uri.parse(apiUrl));
     print(response.body);
@@ -87,6 +89,7 @@ class Eurekoin {
 
     var email = FirebaseAuth.instance.currentUser!.providerData[0].email;
     var bytes = utf8.encode("$email" + "${dotenv.env['LOGIN_KEY']}");
+
     var encoded = sha1.convert(bytes);
     String apiUrl = "$baseUrl/api/exists/?token=$encoded";
     http.Response response = await http.get(Uri.parse(apiUrl));
@@ -98,7 +101,7 @@ class Eurekoin {
   static Future<List?> suggestionListBuilder(String email) async {
     if (email != '') {
       String apiUrl =
-          "https://eurekoinapi.nitdgplug.org/api/users/?pattern=$email";
+          "https://eurekoin.nitdgplug.org/api/users/?pattern=$email";
       http.Response response = await http.get(Uri.parse(apiUrl));
       print(response.body);
       return json.decode(response.body)['users'];
@@ -112,10 +115,11 @@ class Eurekoin {
 
     var email = FirebaseAuth.instance.currentUser!.providerData[0].email;
     var bytes = utf8.encode(email! + "${dotenv.env['LOGIN_KEY']}");
+
     var encoded = sha1.convert(bytes);
     print(email);
     String apiUrl =
-        "https://eurekoinapi.nitdgplug.org/api/history/?token=$encoded";
+        "https://eurekoin.nitdgplug.org/api/history/?token=$encoded";
     print(apiUrl);
     http.Response response = await http.get(Uri.parse(apiUrl));
 
@@ -133,7 +137,7 @@ class Eurekoin {
     var encoded = sha1.convert(bytes);
     print(encoded.toString());
     String apiUrl =
-        "https://eurekoinapi.nitdgplug.org/api/coupon?token=$encoded&code=$coupon";
+        "https://eurekoin.nitdgplug.org/api/coupon?token=$encoded&code=$coupon";
     print(apiUrl);
     http.Response response = await http.get(Uri.parse(apiUrl));
     print(response.statusCode);
@@ -156,6 +160,7 @@ class Eurekoin {
     print("status = $status");
     if (status == '0') {
       getUserEurekoin();
+      print('getUserEurekoin()');
     }
     return status;
   }

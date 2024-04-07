@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 enum AuthMode { register, login }
 
@@ -49,7 +50,7 @@ class _AuthPageState extends State<AuthPage> {
 
   bool _isLoading = false;
 
-  String apiUrl = "jdapi.nitdgplug.org";
+  String apiUrl = "https://interfecio.nitdgplug.org";
 
   AuthMode _authmode = AuthMode.login;
 
@@ -82,7 +83,7 @@ class _AuthPageState extends State<AuthPage> {
     });
     print(_loginFormData);
     http.Response response = await http.post(
-        Uri.parse("https://$apiUrl/api/auth/login/"),
+        Uri.parse("$apiUrl/api/auth/login/"),
         headers: {"Content-Type": "application/json"},
         body: json.encode(_loginFormData));
     print("sgrgeg${response.body}");
@@ -135,7 +136,7 @@ class _AuthPageState extends State<AuthPage> {
       _isLoading = true;
     });
     http.Response response = await http.post(
-        Uri.parse("https://$apiUrl/api/auth/register/"),
+        Uri.parse("$apiUrl/api/auth/register/"),
         headers: {"Content-Type": "application/json"},
         body: json.encode(_registerFormData));
     var data = json.decode(response.body);
@@ -207,8 +208,8 @@ class _AuthPageState extends State<AuthPage> {
       },
       onSaved: (String? value) {
         _authmode == AuthMode.login
-        ? _loginFormData["username"] = value!
-        : _registerFormData["username"] = value!;
+            ? _loginFormData["username"] = value!
+            : _registerFormData["username"] = value!;
       },
     );
   }
@@ -360,18 +361,24 @@ class _AuthPageState extends State<AuthPage> {
           child: Center(
             child: SingleChildScrollView(
               child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                ),
                 width: _targetWidth,
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: <Widget>[
-                      // Text(
-                      //   "JOURNO   DETECTIVE",
-                      //   style: GoogleFonts.yanoneKaffeesatz(
-                      //       fontSize: 53,
-                      //       color: Colors.white,
-                      //       fontWeight: FontWeight.bold),
-                      // ),
+                      Text(
+                        "Interfecio",
+                        style: TextStyle(
+                          fontFamily: 'UrbanJungle',
+                          fontSize: 40.sp,
+                          letterSpacing: 8,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       SizedBox(
                           height: _authmode == AuthMode.login
                               ? MediaQuery.of(context).size.height / 6
@@ -451,7 +458,9 @@ class _AuthPageState extends State<AuthPage> {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       padding: const EdgeInsets.symmetric(
-                                          vertical: 10.0),
+                                        vertical: 10.0,
+                                        horizontal: 10,
+                                      ),
                                     ),
                                     child: Text(
                                       '${_authmode == AuthMode.login ? 'LOGIN' : 'REGISTER'}',

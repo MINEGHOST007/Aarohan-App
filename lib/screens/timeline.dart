@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:aarohan_app/widgets/bottomMenu.dart';
 import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,7 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> {
   Map<String, List> M = {};
   bool showBottomMenu = false;
-  String day = "10th";
+  String day = "8th";
   int x = 0;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class _TimelineState extends State<Timeline> {
     Sort_Events sort = Sort_Events();
     setState(() {
       if (x == 0 && dayItems.length != 0) {
-        M = sort.func(dayItems[1].events);
+        M = sort.func(dayItems[0].events);
         x++;
         print(dayItems);
       }
@@ -125,9 +127,9 @@ class _TimelineState extends State<Timeline> {
                             radius: 20.0,
                             onTap: () {
                               setState(() {
-                                day = "10th";
+                                day = "8th";
                                 M = {};
-                                M = sort.func(dayItems[1].events);
+                                M = sort.func(dayItems[0].events);
                                 print(M);
                               });
                             },
@@ -135,7 +137,7 @@ class _TimelineState extends State<Timeline> {
                               height: 8.h,
                               width: 23.w,
                               decoration: BoxDecoration(
-                                color: (day == "10th")
+                                color: (day == "8th")
                                     ? Color.fromRGBO(252, 252, 252, 0.281)
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(20.0),
@@ -154,13 +156,14 @@ class _TimelineState extends State<Timeline> {
                                   ),
                                   SizedBox(height: 3.5),
                                   Visibility(
-                                    visible: (day == "10th"),
+                                    visible: (day == "8th"),
                                     child: Container(
                                       height: 5,
                                       width: 5,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -170,10 +173,11 @@ class _TimelineState extends State<Timeline> {
                           InkWell(
                             radius: 20.0,
                             onTap: () {
+                              print(dayItems[1].events);
                               setState(() {
-                                day = "11th";
+                                day = "9th";
                                 M = {};
-                                M = sort.func(dayItems[2].events);
+                                M = sort.func(dayItems[1].events);
                                 print(M);
                               });
                             },
@@ -181,7 +185,7 @@ class _TimelineState extends State<Timeline> {
                               height: 8.h,
                               width: 23.w,
                               decoration: BoxDecoration(
-                                color: (day == "11th")
+                                color: (day == "9th")
                                     ? Color.fromRGBO(252, 252, 252, 0.281)
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(20.0),
@@ -200,13 +204,14 @@ class _TimelineState extends State<Timeline> {
                                   ),
                                   SizedBox(height: 3.5),
                                   Visibility(
-                                    visible: (day == "11th"),
+                                    visible: (day == "9th"),
                                     child: Container(
                                       height: 5,
                                       width: 5,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle),
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -217,9 +222,9 @@ class _TimelineState extends State<Timeline> {
                             radius: 20.0,
                             onTap: () {
                               setState(() {
-                                day = "12th";
+                                day = "10th";
                                 M = {};
-                                M = sort.func(dayItems[3].events);
+                                M = sort.func(dayItems[2].events);
                                 print(M);
                               });
                             },
@@ -227,7 +232,7 @@ class _TimelineState extends State<Timeline> {
                               height: 8.h,
                               width: 23.w,
                               decoration: BoxDecoration(
-                                color: (day == "12th")
+                                color: (day == "10th")
                                     ? Color.fromRGBO(252, 252, 252, 0.281)
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(20.0),
@@ -246,7 +251,7 @@ class _TimelineState extends State<Timeline> {
                                   ),
                                   SizedBox(height: 3.5),
                                   Visibility(
-                                    visible: (day == "12th"),
+                                    visible: (day == "10th"),
                                     child: Container(
                                       height: 5,
                                       width: 5,

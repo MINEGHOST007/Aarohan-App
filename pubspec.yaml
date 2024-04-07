@@ -1,5 +1,5 @@
 name: aarohan_app
-description: A new Flutter application.
+description: Annual techno-management fest of NIT Durgapur.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 3.0.0+10
+version: 4.5.0+15
 
 environment:
   sdk: ">=3.0.0 <=3.3.0"
@@ -63,13 +63,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   hive_flutter: ^1.1.0
   outline_gradient_button: ^2.0.1+1
+  flame_noise: ^0.3.0+1
 
-# dev_dependencies:
-#   flutter_launcher_icons:
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
 
 flutter_icons:
     android: "launcher_icon"
-    image_path: "assets/aarohan-logo 1.png"
+    image_path: "assets/aarohan-logo-new.png"
 flutter_test:
     sdk: flutter
 
@@ -91,7 +92,7 @@ flutter:
     - assets/audio/
     - assets/fonts/
     - assets/images/
-    # - .env
+    - .env
 
 
 

@@ -15,10 +15,11 @@ class _ComingState extends State<Coming> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/Aarohan_bg.png"),
-                  colorFilter: new ColorFilter.mode(
-                      Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
-                  fit: BoxFit.fill),
+                image: AssetImage("assets/images/aarohan-bg-new.jpg"),
+                // colorFilter: new ColorFilter.mode(
+                //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
+                fit: BoxFit.cover,
+              ),
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
@@ -31,20 +32,22 @@ class _ComingState extends State<Coming> {
                         Text(
                           "COMING",
                           style: TextStyle(
-                              color: Colors.white,
-                              letterSpacing: 1.1,
-                              fontFamily: 'Staat',
-                              fontSize: 56.sp,
-                              fontWeight: FontWeight.w500),
+                            color: Colors.white,
+                            letterSpacing: -2,
+                            fontFamily: 'AllertaStencil',
+                            fontSize: 56.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                         Text(
                           "SOON",
                           style: TextStyle(
-                              color: Colors.white,
-                              letterSpacing: 1.1,
-                              fontFamily: 'Staat',
-                              fontSize: 56.sp,
-                              fontWeight: FontWeight.w500),
+                            color: Colors.white,
+                            letterSpacing: -2,
+                            fontFamily: 'AllertaStencil',
+                            fontSize: 56.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),
@@ -57,9 +60,13 @@ class _ComingState extends State<Coming> {
                         Navigator.pop(context);
                       },
                       child: Container(
-                        child: CircleAvatar(
-                          radius: 18,
-                          backgroundImage: AssetImage('assets/back.png'),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 25.sp,
+                          ),
+                          onPressed: () => Navigator.pop(context),
                         ),
                       ),
                     ),

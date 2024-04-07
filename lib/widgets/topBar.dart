@@ -83,7 +83,13 @@ class _topBarState extends State<topBar> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    if (widget.pageName == 'Transfer') {
+                      Navigator.popAndPushNamed(context, '/leaderboard');
+                    } else if (widget.pageName == 'Eurekoins') {
+                      Navigator.popAndPushNamed(context, '/dashboard');
+                    } else {
+                      Navigator.pop(context);
+                    }
                   },
                   child: Icon(
                     Icons.arrow_back,

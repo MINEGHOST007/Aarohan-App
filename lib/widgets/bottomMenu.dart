@@ -1,15 +1,19 @@
 import 'dart:ui';
 
+import 'package:aarohan_app/resources/eurekoin.dart';
 import 'package:aarohan_app/widgets/menuItems.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/widgets.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../models/coming_soon.dart';
@@ -45,9 +49,13 @@ class _BottomMenuState extends State<BottomMenu> {
   String settingIcon = 'assets/menuBarSettings0.png';
   String personIcon = 'assets/menuBarPerson0.png';
   String consoleIcon = 'assets/menuBarConsole0.png';
+  late String eurekoinRoute;
 
   final _firestore = FirebaseFirestore.instance;
   String? JDTitle;
+  ValueNotifier<bool> prelims = ValueNotifier(false);
+  ValueNotifier<bool> interfecio = ValueNotifier(false);
+  ValueNotifier<bool> isInterficioAvailable = ValueNotifier(true);
 
   @override
   void initState() {
@@ -58,6 +66,41 @@ class _BottomMenuState extends State<BottomMenu> {
           JDTitle = value.data()?["title"];
         } else {
           print(0);
+        }
+      });
+    });
+    _firestore.collection('Coming Soon').doc('Prelims').get().then((value) {
+      setState(() {
+        if (value.exists) {
+          prelims.value = value.data()?["flag"];
+        } else {
+          // print(prelims);
+        }
+      });
+    });
+    _firestore
+        .collection('Coming Soon')
+        .doc('Journo Detective')
+        .get()
+        .then((value) {
+      setState(() {
+        if (value.exists) {
+          interfecio.value = value.data()?["flag"];
+        } else {
+          // debugPrint(interfecio.value);
+        }
+      });
+    });
+    _firestore
+        .collection('Ext_data')
+        .doc('InterfecioAvailable')
+        .get()
+        .then((value) {
+      setState(() {
+        if (value.exists) {
+          isInterficioAvailable.value = value.data()?["isAvailable"];
+        } else {
+          // debugPrint(interfecio.value);
         }
       });
     });
@@ -725,30 +768,37 @@ class _BottomMenuState extends State<BottomMenu> {
                                                             SingleChildScrollView(
                                                           child: Column(
                                                             children: [
-                                                              MenuItems(
-                                                                leadingImage:
-                                                                    'assets/journo.png',
-                                                                itemName:
-                                                                    'Journo Detective',
-                                                                // JDTitle,
-                                                                routeName:
-                                                                    '/journo',
-                                                              ),
-                                                              MenuItems(
-                                                                leadingImage:
-                                                                    'assets/game.png',
-                                                                itemName:
-                                                                    'Games',
-                                                                routeName:
-                                                                    '/game',
-                                                              ),
+                                                              (isInterficioAvailable
+                                                                      .value)
+                                                                  ? MenuItems(
+                                                                      leadingImage:
+                                                                          'assets/journo.png',
+                                                                      itemName:
+                                                                          'Interfecio',
+                                                                      // JDTitle,
+                                                                      routeName: (!interfecio
+                                                                              .value)
+                                                                          ? '/journo'
+                                                                          : '/coming',
+                                                                    )
+                                                                  : SizedBox(),
+                                                              // MenuItems(
+                                                              //   leadingImage:
+                                                              //       'assets/game.png',
+                                                              //   itemName:
+                                                              //       'Games',
+                                                              //   routeName:
+                                                              //       '/game',
+                                                              // ),
                                                               MenuItems(
                                                                 leadingImage:
                                                                     'assets/prelims.png',
                                                                 itemName:
                                                                     'Prelims',
-                                                                routeName:
-                                                                    '/prelims',
+                                                                routeName: (prelims
+                                                                        .value)
+                                                                    ? '/prelims'
+                                                                    : '/coming',
                                                               ),
                                                             ],
                                                           ),

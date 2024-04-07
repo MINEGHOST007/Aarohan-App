@@ -192,7 +192,7 @@ class _Event_DetailState extends State<Event_Detail> {
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           InkWell(
                                             onTap: () async {},
@@ -238,7 +238,7 @@ class _Event_DetailState extends State<Event_Detail> {
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
-                                                              .spaceAround,
+                                                              .spaceEvenly,
                                                       children: [
                                                         Icon(
                                                             Icons
@@ -309,7 +309,7 @@ class _Event_DetailState extends State<Event_Detail> {
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
-                                                              .spaceAround,
+                                                              .spaceEvenly,
                                                       children: [
                                                         Icon(
                                                             Icons
@@ -422,19 +422,19 @@ class _Event_DetailState extends State<Event_Detail> {
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w400)),
-                                                            Text(textsplit[1],
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        14.sp,
-                                                                    fontFamily:
-                                                                        'Staat',
-                                                                    letterSpacing:
-                                                                        1.1,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w400)),
+                                                            // Text(textsplit[1],
+                                                            //     style: TextStyle(
+                                                            //         fontSize:
+                                                            //             14.sp,
+                                                            //         fontFamily:
+                                                            //             'Staat',
+                                                            //         letterSpacing:
+                                                            //             1.1,
+                                                            //         color: Colors
+                                                            //             .white,
+                                                            //         fontWeight:
+                                                            //             FontWeight
+                                                            //                 .w400)),
                                                           ],
                                                         ),
                                                       )
@@ -485,10 +485,14 @@ class _Event_DetailState extends State<Event_Detail> {
                                                     ],
                                                   ),
                                                   child: GestureDetector(
+                                                    onTap: () {
+                                                      UrlLauncher.launch(
+                                                          "${eventItem.link}");
+                                                    },
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
-                                                              .spaceAround,
+                                                              .spaceEvenly,
                                                       children: [
                                                         Icon(Icons.open_in_new,
                                                             size: 23.5.sp,

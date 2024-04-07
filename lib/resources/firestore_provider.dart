@@ -1,4 +1,3 @@
-import 'package:aarohan_app/screens/coming_soon.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:aarohan_app/models/event.dart';
 import 'package:aarohan_app/models/sponsor.dart';
@@ -68,5 +67,4 @@ class FirebaseService {
   //   );
   //
   // }
-
 }
